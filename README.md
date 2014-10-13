@@ -150,5 +150,3 @@ public class CaseController {
 ```
 
 In the browser, go to https://instance.salesforce.com/apex/CasePage, where instance is whatever prefix is in the URL, e.g. na17. You should see a list of the most recent 20 Cases - fire the web service call again and the page should automatically update.
-
-If you want to understand Force.com a bit be

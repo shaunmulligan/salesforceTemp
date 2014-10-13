@@ -17,7 +17,7 @@ exports.auth = function(name, pass, securityToken) {
 		    client_id: config.CLIENT_ID,
 		    client_secret: config.CLIENT_SECRET,
 		    username: name,
-		    password: pass + securityToken
+		    password: pass
 		  },
 		resolveWithFullResponse: true
 	}; 
