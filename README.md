@@ -58,7 +58,8 @@ clone repo, add resin remote, git push resin master
  - Click Debug | Open Execute Anonymous Window.
  - In the Enter Apex Code window, paste in the following Apex code, and click Execute.
 
-`PushTopic pushTopic = new PushTopic();
+```
+PushTopic pushTopic = new PushTopic();
 pushTopic.Name = 'CaseUpdates';
 pushTopic.Query = 'SELECT Id, Subject, Description FROM Case';
 pushTopic.ApiVersion = 31.0;
@@ -67,7 +68,8 @@ pushTopic.NotifyForOperationUpdate = true;
 pushTopic.NotifyForOperationUndelete = true;
 pushTopic.NotifyForOperationDelete = true;
 pushTopic.NotifyForFields = 'Referenced';
-insert pushTopic;`
+insert pushTopic;
+```
 
 5. Upload streaming.zip (attached) as a Static Resource
  - Setup | Develop | Static Resources
@@ -83,7 +85,8 @@ insert pushTopic;`
  - Hit 'New'
  - Paste in the following code:
 
-`public class CaseController {
+```
+public class CaseController {
     public List<Case> cases {
         get {
             // Re-run the query every time the page references cases
@@ -100,14 +103,16 @@ insert pushTopic;`
     
     public CaseController() {
     }
-}`
+}
+```
 
  - Setup | Develop | Pages
  - Hit 'New'
  - Label: CasePage
  - Replace the existing markup with the following:
 
-`<apex:page controller="CaseController" sidebar="false">
+```
+<apex:page controller="CaseController" sidebar="false">
     <apex:includeScript value="{!URLFOR($Resource.streaming, 'cometd.js')}"/>
     <apex:includeScript value="{!URLFOR($Resource.streaming, 'jquery-1.5.1.js')}"/>
     <apex:includeScript value="{!URLFOR($Resource.streaming, 'jquery.cometd.js')}"/>
@@ -141,7 +146,8 @@ insert pushTopic;`
             </apex:pageBlockSection>
         </apex:pageBlock>
     </apex:form>
-</apex:page>`
+</apex:page>
+```
 
 In the browser, go to https://instance.salesforce.com/apex/CasePage, where instance is whatever prefix is in the URL, e.g. na17. You should see a list of the most recent 20 Cases - fire the web service call again and the page should automatically update.
 
