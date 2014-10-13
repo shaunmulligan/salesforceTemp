@@ -31,6 +31,7 @@ exports.auth = function(name, pass, securityToken) {
     		var json = JSON.parse(res.body);
 			session.token = json.access_token;
 			session.instanceUrl = json.instance_url;
+			console.log(session.instance_url);
 			console.log("successfully logged in user");
 			return session;
     	}
