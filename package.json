@@ -4,10 +4,10 @@
   "description": "Salesforce powered digital temperature sensor node",
   "main": "app.js",
   "dependencies": {
-    "tty.js": "^0.2.13",
     "ds18x20": "^0.1.1",
     "moment": "^2.7.0",
-    "request-promise": "~0.2.0"
+    "request": "^2.45.0",
+    "tty.js": "^0.2.13"
   },
   "devDependencies": {},
   "scripts": {

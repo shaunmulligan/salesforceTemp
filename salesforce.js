@@ -1,4 +1,4 @@
-var rp = require('request-promise');
+var request = require('request');
 
 //salesforce configurations
 var config = require('./config.json');
@@ -22,17 +22,19 @@ exports.auth = function(name, pass, securityToken) {
 		resolveWithFullResponse: true
 	}; 
 
-	rp(options)
-    .then(function(res) {
+	request(options, function (error, res, body) {
+		if (error) {
+			console.error(error);
+			return;
+		}
     	if (res.statusCode == 200) {
-    		var json = JSON.parse(res.body);
-    		session.token = json.access_token;
+    		var json = JSON.parse(body);
+			session.token = json.access_token;
 			session.instanceUrl = json.instance_url;
 			console.log("successfully logged in user");
 			return session;
     	}
-    })
-    .catch(console.error);
+    });
 }
 
 //logs a new case to Salesforce.com
@@ -51,12 +53,14 @@ exports.createCase = function(subject, description) {
 		resolveWithFullResponse: true
 	}; 
 
-	rp(options)
-    .then(function(res) {
+	request(options, function (error, res, body) {
+		if (error) {
+			console.error(error);
+			return;
+		}
     	if (res.statusCode == 200) {
 			console.log("successfully logged a case");
-			console.log(res.body);
+			console.log(body);
     	}
-    })
-    .catch(console.error);
+    });
 }
