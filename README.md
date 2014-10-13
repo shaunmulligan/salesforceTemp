@@ -12,7 +12,7 @@ The recipe for this project is as follows:
 
 ###Setup a resin.io account
 1. setup ssh key on git,
-open id_rsa.pub in the C:\Users\username\.ssh folder and copy the ssh key.
+open `id_rsa.pub` in the `C:\Users\username\.ssh` folder and copy the ssh key.
 2. start a new app
 3. download the zip.
 4. extract zip and copy the contents of the file over to the SD card
@@ -45,5 +45,5 @@ Here is a diagram of the circuit:
 
 ![Circuit diagram](/docs/images/diagram.png)
 
-###4. clone
-. clone repo, add resin remote, git push resin master 
+###Clone & push
+clone repo, add resin remote, git push resin master 
