@@ -19,6 +19,18 @@ open `id_rsa.pub` in the `C:\Users\username\.ssh` folder and copy the ssh key.
 5. eject the SD card, put in RPI, make sure the RPI is connected to the network and power it up.
 6. it should take about 6 minutes to register the device and you should see it pop up in your resin.io dashboard.
 
+###Connect up the hardware
+#### Wiring
+
+**Warning: disconnect the raspberry pi for power before wiring up these parts**
+
+1. Connect up the DS18b20 as shown in the diagram, with pin1 connected to ground (GND), pin2 connected to GPIO4 of the raspberry pi and pin3 connected to 3.3V. 
+1. Additionally you will need to connect a resistor between pin2 (the data line) and the 3.3V supply voltage. This resistor can be any value between 4.7KΩ and 10KΩ.
+1. Connect the ethernet cable to the raspberry pi and power it up using the micro usb.
+Here is a diagram of the circuit:
+
+![Circuit diagram](/docs/images/diagram.png)
+
 while we wait...
 
 ###Setup Saleforce credentials
@@ -33,17 +45,7 @@ while we wait...
 
 ![Circuit diagram](/docs/images/env_vars.png)
 
-###Connect up the hardware
-#### Wiring
 
-**Warning: disconnect the raspberry pi for power before wiring up these parts**
-
-1. Connect up the DS18b20 as shown in the diagram, with pin1 connected to ground (GND), pin2 connected to GPIO4 of the raspberry pi and pin3 connected to 3.3V. 
-1. Additionally you will need to connect a resistor between pin2 (the data line) and the 3.3V supply voltage. This resistor can be any value between 4.7KΩ and 10KΩ.
-1. Connect the ethernet cable to the raspberry pi and power it up using the micro usb.
-Here is a diagram of the circuit:
-
-![Circuit diagram](/docs/images/diagram.png)
 
 ###Clone & push
 clone repo, add resin remote, git push resin master 

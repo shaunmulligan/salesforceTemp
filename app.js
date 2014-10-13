@@ -23,7 +23,7 @@ setInterval( function() {
 	var status = sensor.getStatus(warningThreshold);
 	for(var key in status){
 	    if(status[key][1]) {
-	    	console.log("threshold on sensor "+ key +" has been exceeded!");
+	    	console.log("threshold on sensor "+ key +" has been exceeded! temp = "+status[key][0]);
 	    	console.log("logging case to salesforce...");
 	    	var description = "sensor "+ key +" is at "+ status[key][0]+" on device "+deviceName;
 	    	salesforce.createCase("Threshold Exceeded", description);

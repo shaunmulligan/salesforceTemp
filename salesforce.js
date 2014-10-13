@@ -28,7 +28,7 @@ exports.auth = function(name, pass, securityToken) {
 			return;
 		}
     	if (res.statusCode == 200) {
-    		var json = JSON.parse(body);
+    		var json = JSON.parse(res.body);
 			session.token = json.access_token;
 			session.instanceUrl = json.instance_url;
 			console.log("successfully logged in user");
@@ -60,7 +60,7 @@ exports.createCase = function(subject, description) {
 		}
     	if (res.statusCode == 200) {
 			console.log("successfully logged a case");
-			console.log(body);
+			console.log(res.body);
     	}
     });
 }
