@@ -48,7 +48,7 @@ while we wait...
 
 
 ###Clone & push
-clone repo, add resin remote, git push resin master 
+clone this repo locally, add resin remote by copying it from the dashboard on the top right, now on your PC terminal do `git push resin master` 
 
 
 ###Salesforce case logging setup
