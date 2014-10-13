@@ -33,6 +33,7 @@ exports.auth = function(name, pass, securityToken) {
 			session.instanceUrl = json.instance_url;
 			console.log(session.instance_url);
 			console.log("successfully logged in user");
+			console.log("session: {"+session+"}");
 			return session;
     	}
     });
