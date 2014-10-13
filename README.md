@@ -49,3 +49,99 @@ while we wait...
 
 ###Clone & push
 clone repo, add resin remote, git push resin master 
+
+
+4. Create a PushTopic for Case updates
+
+ - Select Your Name | Developer Console.
+ - Click Debug | Open Execute Anonymous Window.
+ - In the Enter Apex Code window, paste in the following Apex code, and click Execute.
+
+PushTopic pushTopic = new PushTopic();
+pushTopic.Name = 'CaseUpdates';
+pushTopic.Query = 'SELECT Id, Subject, Description FROM Case';
+pushTopic.ApiVersion = 31.0;
+pushTopic.NotifyForOperationCreate = true;
+pushTopic.NotifyForOperationUpdate = true;
+pushTopic.NotifyForOperationUndelete = true;
+pushTopic.NotifyForOperationDelete = true;
+pushTopic.NotifyForFields = 'Referenced';
+insert pushTopic;
+
+5. Upload streaming.zip (attached) as a Static Resource
+ - Setup | Develop | Static Resources
+   - Click 'New' (not 'Create New View!')
+   - Name: streaming
+   - select streaming.zip (attached)
+   - change 'Cache Control' to public
+   - Hit 'Save'
+   - [streaming.zip](https://dl.dropboxusercontent.com/u/9795699/streaming.zip "streaming.zip") 
+
+6. Create CaseController and CasePage to show most recent cases
+ - Setup | Develop | Apex Classes
+ - Hit 'New'
+ - Paste in the following code:
+
+public class CaseController {
+    public List<Case> cases {
+        get {
+            // Re-run the query every time the page references cases
+            // normally we'd do this in the constructor and cache the
+            // result in the controller, but we want it to be more
+            // dynamic
+            return [SELECT Subject, Description 
+                    FROM Case
+                    ORDER BY CreatedDate DESC
+                    LIMIT 20];
+        } 
+        set;
+    }
+    
+    public CaseController() {
+    }
+}
+
+ - Setup | Develop | Pages
+ - Hit 'New'
+ - Label: CasePage
+ - Replace the existing markup with the following:
+
+<apex:page controller="CaseController" sidebar="false">
+    <apex:includeScript value="{!URLFOR($Resource.streaming, 'cometd.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.streaming, 'jquery-1.5.1.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.streaming, 'jquery.cometd.js')}"/>
+    <script type="text/javascript">
+    (function($){
+        $(document).ready(function() {
+            // Connect to the CometD endpoint
+            $.cometd.init({
+               url: window.location.protocol+'//'+window.location.hostname+'/cometd/27.0/',
+               requestHeaders: { Authorization: 'OAuth {!$Api.Session_ID}'}
+           });
+
+           // Subscribe to a topic. JSON-encoded update will be returned
+           // in the callback
+           $.cometd.subscribe('/topic/CaseUpdates', function(message) {
+               // We don't really care about the update detail - just
+               // rerender the list of Cases
+               rerenderPageBlock();
+           });
+        });
+    })(jQuery)
+    </script>
+    <apex:form>
+        <apex:actionFunction name="rerenderPageBlock" rerender="pageBlock" />
+        <apex:pageBlock id="pageBlock">
+            <apex:pageBlockSection title="Case">
+                <apex:pageBlockTable value="{!cases}" var="case">
+                    <apex:column value="{!case.subject}"/>
+                    <apex:column value="{!case.description}"/>
+                </apex:pageBlockTable>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>
+
+In the browser, go to https://instance.salesforce.com/apex/CasePage, where instance is whatever prefix is in the URL, e.g. na17. You should see a list of the most recent 20 Cases - fire the web service call again and the page should automatically update.
+
+If you want to understand Force.com a bit be

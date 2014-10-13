@@ -60,7 +60,7 @@ exports.createCase = function(subject, description) {
 			console.error(error);
 			return;
 		}
-    	if (res.statusCode == 200) {
+    	if (res.statusCode == 201) {
 			console.log("successfully logged a case");
 			console.log(res.body);
     	}
