@@ -1,0 +1,16 @@
+{
+  "name": "Salesforce_Temperature_Node",
+  "version": "0.0.0",
+  "description": "Salesforce powered digital temperature sensor node",
+  "main": "app.js",
+  "dependencies": {
+    "tty.js": "^0.2.13",
+    "ds18x20": "^0.1.1",
+    "moment": "^2.7.0",
+    "request-promise": "~0.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "modprobe w1-gpio && modprobe w1-therm && node app.js"
+  }
+}
