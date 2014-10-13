@@ -12,7 +12,7 @@ exports.auth = function(name, pass, securityToken) {
 	var options = {
 	    uri : 'https://login.salesforce.com/services/oauth2/token',
 	    method : 'POST',
-	    form: {
+	    json: {
 		    grant_type: 'password',
 		    client_id: config.CLIENT_ID,
 		    client_secret: config.CLIENT_SECRET,
