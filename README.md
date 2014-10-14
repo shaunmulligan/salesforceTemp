@@ -1,4 +1,7 @@
-## Parts
+# Salesforce temperature probe
+In this example, we will use resin.io to deploy a node.js app that reads a digital temperature sensor on the Raspberry Pi, when the temperature exceeds a user defined thershold temperature, the app creates a case on Salesforce and we will be able to view it in the cases stream.
+
+## Things you will need:
 
 The recipe for this project is as follows:
 
@@ -6,18 +9,17 @@ The recipe for this project is as follows:
   USB -> micro USB cable for power.
 * one or more [DS18b20][6] digital temperature sensors.
 * a 4.7KΩ or 10KΩ.
-* A breadboard, for example the [AD-102 from Maplin][2].
-* Jumper wires to connect everything. For example, these
-  [male-to-female connectors from Maplin][3].
+* A breadboard, for prototyping.
+* Jumper wires to connect everything.
 
 ###Setup a resin.io account
-1. setup ssh key on git,
-open `id_rsa.pub` in the `C:\Users\username\.ssh` folder and copy the ssh key.
-2. start a new app
-3. download the zip.
-4. extract zip and copy the contents of the file over to the SD card
-5. eject the SD card, put in RPI, make sure the RPI is connected to the network and power it up.
-6. it should take about 6 minutes to register the device and you should see it pop up in your resin.io dashboard.
+1. Go to [resin.io/signup](https://alpha.resin.io/signup) and sign up for a resin.io account.
+1. Setup your public ssh key on git, if you are part of the Dreamforce workshop, we have already created a ssh key for you on you laptop, so navigate to `C:/Users/admin/.ssh` and open `id_rsa.pub` with a text editor. Copy the contents and paste it into the box provided on resin.io
+2. Resin.io will now ask you to create a new application. Go ahead and do that. Application names can only contain letters [A-z] and numbers [0-9].
+3. Once your app is created, download the zip. Do not worry about the network connection settings.
+4. Extract zip and copy the contents of the file over to your SD card.
+5. Eject the SD card from your PC and put in the Raspberry pi, make sure the Raspberry pi is connected to the network ethernet cable. We are now ready to power it up.
+6. It should now take about 6 minutes to appear on your resin.io dashboard. The pi is using this time to expand its file system and partition the SD card, as well as connect with our resin.io servers.
 
 ###Connect up the hardware
 #### Wiring
