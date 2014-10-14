@@ -5,10 +5,10 @@ In this example, we will use resin.io to deploy a node.js app that reads a digit
 
 The recipe for this project is as follows:
 
-* Raspberry Pi with ethernet cable for internet connectivity and
-  USB -> micro USB cable for power.
-* one or more [DS18b20][6] digital temperature sensors.
-* a 4.7KΩ or 10KΩ.
+* Raspberry Pi with ethernet cable for internet connectivity 
+* A USB -> micro USB cable for power.
+* One or more [DS18b20][6] digital temperature sensors.
+* A 4.7KΩ or 10KΩ.
 * A breadboard, for prototyping.
 * Jumper wires to connect everything.
 
@@ -21,6 +21,22 @@ The recipe for this project is as follows:
 5. Eject the SD card from your PC and put in the Raspberry pi, make sure the Raspberry pi is connected to the network ethernet cable. We are now ready to power it up.
 6. It should now take about 6 minutes to appear on your resin.io dashboard. The pi is using this time to expand its file system and partition the SD card, as well as connect with our resin.io servers.
 
+while we wait...
+
+###Setup Saleforce credentials
+For this example, you will need a developer account on salesforce. If you don't already have one, head over here https://developer.salesforce.com/ and get one.
+In order to authenticate requests from outside of the Salesforce organisation IP range, we will need to get our security token.
+1. Getting SF security token
+ + Go to your name and click
+ + Select My Settings
+ + Select Personal
+ + Sixth option is "Reset My Security Token"
+... you should then get an email with your security token, note it down somewhere because we will use it soon.
+
+2. Now in your newly created app on the resin.io dashboard, click on the small yellow gear at the bottom. Here we can create enviroment variables to use in our code running on the raspberry pi. For this app we will need to create one for `SF_USERNAME`, `SF_PASSWORD` and `SF_SEC_TOKEN`. Optionally you can include sample interval and threshold.
+
+![Circuit diagram](/docs/images/env_vars.png)
+
 ###Connect up the hardware
 #### Wiring
 
@@ -32,21 +48,6 @@ The recipe for this project is as follows:
 Here is a diagram of the circuit:
 
 ![Circuit diagram](/docs/images/diagram.png)
-
-while we wait...
-
-###Setup Saleforce credentials
-1. get SF security token
- + Go to your name and click
- + Select My Settings
- + Select Personal
- + Sixth option is "Reset My Security Token"
-... you should then get an email with your security token.
-
-2. Now create the environment variables for you app in the resin.io dashboard. You will need one for `SF_USERNAME`, `SF_PASSWORD` and `SF_SEC_TOKEN`. Optionally you can include sample interval and threshold.
-
-![Circuit diagram](/docs/images/env_vars.png)
-
 
 
 ###Clone & push
