@@ -24,7 +24,7 @@ The recipe for this project is as follows:
 while we wait...
 
 ###Setup Saleforce credentials
-For this example, you will need a developer account on salesforce. If you don't already have one, head over here https://developer.salesforce.com/ and get one.
+For this example, you will need a developer account on salesforce. If you don't already have one, head over here https://login.salesforce.com/ and get one.
 In order to authenticate requests from outside of the Salesforce organisation IP range, we will need to get our security token.
 1. Getting SF security token
  + Go to your name and click
