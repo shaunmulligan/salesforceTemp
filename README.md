@@ -30,7 +30,7 @@ In order to authenticate requests from outside of the Salesforce organisation IP
  + Go to your name and click
  + Select My Settings
  + Select Personal
- + Sixth option is "Reset My Security Token"
+ + Sixth option is "Reset My Security Token" Hf11hxN0c53ET0tHaCnDbG64
 ... you should then get an email with your security token, note it down somewhere because we will use it soon.
 
 2. Now in your newly created app on the resin.io dashboard, click on the small yellow gear at the bottom. Here we can create enviroment variables to use in our code running on the raspberry pi. For this app we will need to create one for `SF_USERNAME`, `SF_PASSWORD` and `SF_SEC_TOKEN`. Optionally you can include sample interval and threshold.
