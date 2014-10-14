@@ -35,6 +35,8 @@ In order to authenticate requests from outside of the Salesforce organisation IP
 
 2. Now in your newly created app on the resin.io dashboard, click on the small yellow gear at the bottom. Here we can create enviroment variables to use in our code running on the raspberry pi. For this app we will need to create one for `SF_USERNAME`, `SF_PASSWORD` and `SF_SEC_TOKEN`. Optionally you can include sample interval and threshold.
 
+Hopefully by now your raspberry pi has shown up on the dash board. You should now be able to click on the "identify device" button and see the little green LED flash. We are now ready to start pushing code...but lets first setup some electronics.
+
 ![Circuit diagram](/docs/images/env_vars.png)
 
 ###Connect up the hardware
@@ -42,7 +44,7 @@ In order to authenticate requests from outside of the Salesforce organisation IP
 
 **Warning: disconnect the raspberry pi for power before wiring up these parts**
 
-1. Connect up the DS18b20 as shown in the diagram, with pin1 connected to ground (GND), pin2 connected to GPIO4 of the raspberry pi and pin3 connected to 3.3V. 
+1. Connect up the DS18b20 temperature senosr as shown in the diagram, with pin1 (black wire) connected to ground (GND), pin2 (blue wire) connected to GPIO4 of the raspberry pi and pin3 (red wire) connected to 3.3V. 
 1. Additionally you will need to connect a resistor between pin2 (the data line) and the 3.3V supply voltage. This resistor can be any value between 4.7KΩ and 10KΩ.
 1. Connect the ethernet cable to the raspberry pi and power it up using the micro usb.
 Here is a diagram of the circuit:
@@ -51,7 +53,8 @@ Here is a diagram of the circuit:
 
 
 ###Clone & push
-clone this repo locally, add resin remote by copying it from the dashboard on the top right, now on your PC terminal do `git push resin master` 
+In your terminal, clone this repo locally, add resin remote by copying it from the dashboard on the top right, now on your PC terminal do `git push resin master`.
+You should see a bunch of logs scroll on your terminal as your code is cross-compiled in the cloud, this should take about 60 seconds and you will see a friendly unicorn on your 
 
 
 ###Salesforce case logging setup
