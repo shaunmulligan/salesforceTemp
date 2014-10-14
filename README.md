@@ -55,6 +55,7 @@ Here is a diagram of the circuit:
 ###Clone & push
 In your terminal, clone this repo locally, add resin remote by copying it from the dashboard on the top right, now on your PC terminal do `git push resin master`.
 You should see a bunch of logs scroll on your terminal as your code is cross-compiled in the cloud, this should take about 60 seconds and you will see a friendly unicorn on your terminal, like this...
+
 ![unicorn](/docs/images/unicorn.png)
 
 
