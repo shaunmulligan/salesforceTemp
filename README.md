@@ -30,12 +30,12 @@ In order to authenticate requests from outside of the Salesforce organisation IP
  + Go to your name and click
  + Select My Settings
  + Select Personal
- + Sixth option is "Reset My Security Token" Hf11hxN0c53ET0tHaCnDbG64
+ + Sixth option is "Reset My Security Token"
 ... you should then get an email with your security token, note it down somewhere because we will use it soon.
 
 2. Now in your newly created app on the resin.io dashboard, click on the small yellow gear at the bottom. Here we can create enviroment variables to use in our code running on the raspberry pi. For this app we will need to create one for `SF_USERNAME`, `SF_PASSWORD` and `SF_SEC_TOKEN`. Optionally you can include sample interval and threshold.
 
-Hopefully by now your raspberry pi has shown up on the dash board. You should now be able to click on the "identify device" button and see the little green LED flash. We are now ready to start pushing code...but lets first setup some electronics.
+Hopefully by now your raspberry pi has provisioned and shown up on the dash board. You should now be able to click on the "identify device" button and see the little green LED flash. We are now ready to start pushing code...but lets first setup some electronics.
 
 ![Circuit diagram](/docs/images/env_vars.png)
 
@@ -44,8 +44,8 @@ Hopefully by now your raspberry pi has shown up on the dash board. You should no
 
 **Warning: disconnect the raspberry pi for power before wiring up these parts**
 
-1. Connect up the DS18b20 temperature senosr as shown in the diagram, with pin1 (black wire) connected to ground (GND), pin2 (blue wire) connected to GPIO4 of the raspberry pi and pin3 (red wire) connected to 3.3V.
-1. Additionally you will need to connect a resistor between pin2 (the data line) and the 3.3V supply voltage. This resistor can be any value between 4.7KΩ and 10KΩ.
+1. Connect up the DS18b20 temperature sensor as shown in the diagram, with pin1 of the temp probe (black wire) connected to ground (GND), pin2 (blue wire) connected to GPIO4 of the raspberry pi and pin3 (red wire) connected to 3.3V of the raspberry pi.
+1. Additionally you will need to connect a resistor between pin2 (blue wire) and the 3.3V supply voltage. This resistor can be any value between 4.7KΩ and 10KΩ.
 1. Connect the ethernet cable to the raspberry pi and power it up using the micro usb.
 Here is a diagram of the circuit:
 
@@ -62,6 +62,12 @@ You should see a bunch of logs scroll on your terminal as your code is cross-com
 
 
 ###Salesforce case logging setup
+1. Sign up for a Developer Edition
+ - Go to https://developer.salesforce.com/signup
+ - Fill out the form. Note - your username has to look like an email, but it doesn't have to be your email - e.g. I use something@devorg.pat for mine.
+ - Look for the 'login confirmation' email. Click the link in the email, set your password and recovery question
+
+2. Create a connected app; for scope, you'll want 'api'. For our purposes, the callback url doesn't matter, so you can just put http://localhost for that field, and you can leave the logo and icon blank.
 4. Create a PushTopic for Case updates
 
  - Select Your Name | Developer Console.
@@ -71,7 +77,7 @@ You should see a bunch of logs scroll on your terminal as your code is cross-com
 ```
 PushTopic pushTopic = new PushTopic();
 pushTopic.Name = 'CaseUpdates';
-pushTopic.Query = 'SELECT Id, Subject, Description FROM Case';
+pushTopic.Query = 'SELECT Id, Subject FROM Case';
 pushTopic.ApiVersion = 31.0;
 pushTopic.NotifyForOperationCreate = true;
 pushTopic.NotifyForOperationUpdate = true;
