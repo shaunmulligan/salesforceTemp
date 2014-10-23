@@ -51,6 +51,8 @@ Here is a diagram of the circuit:
 
 ![Circuit diagram](/docs/images/SF_tempsensor_bb.png)
 
+note! if you have the new Raspberry pi B+, do not worry, they pin connections on the pi are exactly the same. The B+ just has an extra bunch of pin on the right which we do not use here :)
+
 
 ###Clone & push
 In your terminal, clone this repo locally, add resin remote by copying it from the dashboard on the top right, now on your PC terminal do `git push resin master`.
