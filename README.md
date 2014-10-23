@@ -7,7 +7,7 @@ The recipe for this project is as follows:
 
 * Raspberry Pi with ethernet cable for internet connectivity
 * A USB -> micro USB cable for power.
-* One or more [DS18b20][6] digital temperature sensors.
+* One or more [DS18b20](http://www.adafruit.com/product/381) digital temperature sensors.
 * A 4.7KΩ or 10KΩ.
 * A breadboard, for prototyping.
 * Jumper wires to connect everything.
