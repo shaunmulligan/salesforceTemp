@@ -5,7 +5,7 @@ In this example, we will use resin.io to deploy a node.js app that reads a digit
 
 The recipe for this project is as follows:
 
-* Raspberry Pi with ethernet cable for internet connectivity 
+* Raspberry Pi with ethernet cable for internet connectivity
 * A USB -> micro USB cable for power.
 * One or more [DS18b20][6] digital temperature sensors.
 * A 4.7KΩ or 10KΩ.
@@ -44,12 +44,12 @@ Hopefully by now your raspberry pi has shown up on the dash board. You should no
 
 **Warning: disconnect the raspberry pi for power before wiring up these parts**
 
-1. Connect up the DS18b20 temperature senosr as shown in the diagram, with pin1 (black wire) connected to ground (GND), pin2 (blue wire) connected to GPIO4 of the raspberry pi and pin3 (red wire) connected to 3.3V. 
+1. Connect up the DS18b20 temperature senosr as shown in the diagram, with pin1 (black wire) connected to ground (GND), pin2 (blue wire) connected to GPIO4 of the raspberry pi and pin3 (red wire) connected to 3.3V.
 1. Additionally you will need to connect a resistor between pin2 (the data line) and the 3.3V supply voltage. This resistor can be any value between 4.7KΩ and 10KΩ.
 1. Connect the ethernet cable to the raspberry pi and power it up using the micro usb.
 Here is a diagram of the circuit:
 
-![Circuit diagram](/docs/images/diagram.png)
+![Circuit diagram](/docs/images/SF_tempsensor_bb.png)
 
 
 ###Clone & push
@@ -86,7 +86,7 @@ insert pushTopic;
    - select streaming.zip (attached)
    - change 'Cache Control' to public
    - Hit 'Save'
-   - [streaming.zip](https://dl.dropboxusercontent.com/u/9795699/streaming.zip "streaming.zip") 
+   - [streaming.zip](https://dl.dropboxusercontent.com/u/9795699/streaming.zip "streaming.zip")
 
 6. Create CaseController and CasePage to show most recent cases
  - Setup | Develop | Apex Classes
@@ -101,14 +101,14 @@ public class CaseController {
             // normally we'd do this in the constructor and cache the
             // result in the controller, but we want it to be more
             // dynamic
-            return [SELECT Subject, Description 
+            return [SELECT Subject, Description
                     FROM Case
                     ORDER BY CreatedDate DESC
                     LIMIT 20];
-        } 
+        }
         set;
     }
-    
+
     public CaseController() {
     }
 }
